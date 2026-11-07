@@ -1,0 +1,23 @@
+# Old UENI addresses -> new pages (301 = permanent)
+/about-us        /about/     301
+/about-us/       /about/     301
+/contact-us      /contact/   301
+/contact-us/     /contact/   301
+/legal-notice    /legal/     301
+/merchant-policies /legal/   301
+/blog/how-cctv-drain-inspections-prevent-costly-repairs  /blog/how-cctv-drain-inspections-prevent-costly-repairs/  301
+/blog/no-dig-drain-repairs-faster-fixes-with-less-disruption  /blog/no-dig-drain-repairs-faster-fixes-with-less-disruption/  301
+/services/drain-maintenance/blocked-drain-clearing-150626624  /services/blocked-drain-clearing/  301
+/services/drain-maintenance/drain-repair-150626638  /services/drain-repair/  301
+/services/drainage-solutions/drain-inspection-and-maintenance-150626637  /services/cctv-drain-inspection/  301
+/services/drainage-solutions/drain-cleaning-150626636  /services/drain-cleaning/  301
+/services/drainage-solutions/drainage-installation-150626639  /services/drainage-installation/  301
+/services/drainage-solutions/sewer-line-services-150626640  /services/sewer-line-services/  301
+/services/drainage-solutions/stormwater-drainage-solutions-150626641  /services/stormwater-drainage/  301
+/services/drainage-solutions/specialist-drainage-systems-150626695  /services/specialist-drainage-systems/  301
+/services/drain-maintenance/pump-station-works-150632009  /services/pump-station-works/  301
+/services/drain-maintenance/sewage-treatment-plant-works-150632018  /services/sewage-treatment-plant-works/  301
+/services/drain-maintenance/*  /services/  301
+/services/drainage-solutions/*  /services/  301
+# www -> main domain
+https://www.elitedrainage.uk/*  https://elitedrainage.uk/:splat  301!

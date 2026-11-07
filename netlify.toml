@@ -1,0 +1,4 @@
+# Netlify settings. The site is already built into the public/ folder, so no build step is needed.
+[build]
+  publish = "public"
+  command = ""

@@ -82,3 +82,26 @@ Follow the "Week 2" section of the SEO audit. In short:
 - **The form does nothing:** make sure form detection is on (step 3) and that you redeployed after turning it on.
 - **The domain still shows the UENI site after 24 hours:** there is usually an old UENI record left in DNS. Remove every A, AAAA and CNAME record for `@` and `www` that is not Netlify's.
 - **Email stopped working:** an MX record was changed or deleted. Put it back to the value your email provider gives you.
+
+---
+
+# Option: preview (or host) the site on Vercel
+
+Vercel is an alternative free host. The repository includes a `vercel.json` file with the same page redirects as Netlify. Vercel creates a shareable preview link automatically.
+
+1. Go to **vercel.com/signup** and choose **Continue with GitHub**. Use the GitHub account that holds the `elitesdrainage` repository.
+2. Click **Add New…**, then **Project**.
+3. Find **elitesdrainage** in the list and click **Import**. If it isn't listed, click **Adjust GitHub App Permissions** and give Vercel access to that repository.
+4. On the "Configure Project" screen:
+   - **Framework Preset:** Other
+   - **Root Directory:** leave as `./`
+   - **Build and Output Settings:** leave as they are. `vercel.json` already tells Vercel to publish the `public` folder.
+5. Click **Deploy**. After about 30 seconds you get a link such as `elitesdrainage.vercel.app`.
+
+**Preview the build branch.** Vercel builds the repository's default branch for the main link. The rebuild currently lives on the branch `claude/elitedrainage-rebuild-seo-q379t0`. To see it:
+- In your Vercel project, open the **Deployments** tab. Every branch gets its own preview deployment with its own link. Click the one for that branch, then click **Visit**.
+- If no deployment for the branch shows up, push any change to the branch, or merge it into `main`.
+
+**One difference on Vercel:** the contact form uses Netlify's form service, so it **does not send on Vercel**. Everything else works the same. If you choose Vercel for the live site, the form needs a form service such as Formspree (free plan available). Ask me and I'll switch it over.
+
+To use your own domain on Vercel, open **Settings**, then **Domains**, and add `elitedrainage.uk`. Vercel shows the DNS records to add in Cloudflare. It's the same idea as step 4 above.

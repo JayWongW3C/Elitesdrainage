@@ -651,8 +651,34 @@ def build_seo_files():
   Cache-Control: public, max-age=604800
 ''')
 
+def build_vercel_config():
+    """vercel.json: the same redirects and headers as the Netlify files, for hosting on Vercel."""
+    redirects = []
+    def r(src, dst):
+        for v in {src.rstrip('/'), src.rstrip('/') + '/'}:
+            redirects.append({"source": v, "destination": dst, "permanent": True})
+    r('/about-us', '/about/'); r('/contact-us', '/contact/'); r('/legal-notice', '/legal/'); r('/merchant-policies', '/legal/')
+    for s in SERVICES:
+        for o in s['old']:
+            r(o, f'/services/{s["slug"]}/')
+    redirects += [{"source": "/services/drain-maintenance/:path*", "destination": "/services/", "permanent": True},
+                  {"source": "/services/drainage-solutions/:path*", "destination": "/services/", "permanent": True}]
+    cfg = {
+        "$schema": "https://openapi.vercel.sh/vercel.json",
+        "framework": None, "outputDirectory": "public",
+        "trailingSlash": True,
+        "redirects": redirects,
+        "headers": [
+            {"source": "/(.*)", "headers": [{"key": "X-Content-Type-Options", "value": "nosniff"},
+                                             {"key": "Referrer-Policy", "value": "strict-origin-when-cross-origin"},
+                                             {"key": "X-Frame-Options", "value": "SAMEORIGIN"}]},
+            {"source": "/img/(.*)", "headers": [{"key": "Cache-Control", "value": "public, max-age=31536000, immutable"}]},
+        ],
+    }
+    open(os.path.join(ROOT, 'vercel.json'), 'w').write(json.dumps(cfg, indent=2) + '\n')
+
 if __name__ == '__main__':
     build_home(); build_services_hub()
     for s in SERVICES: build_service(s)
-    build_areas(); build_about(); build_contact(); build_blog(); build_legal(); build_utility(); build_seo_files()
+    build_areas(); build_about(); build_contact(); build_blog(); build_legal(); build_utility(); build_seo_files(); build_vercel_config()
     print(f'Built {len(PAGES)} indexable pages into public/')
